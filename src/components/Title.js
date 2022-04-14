@@ -5,12 +5,11 @@ const Title = () => {
     return (
         <div id="title">
             <h1 id='title-words'>
-               Fitness Trackr
+               Fitness Trackr 
             </h1>
             
-            <h4>Try a routine</h4>
+            <h2>Try a routine, sign up, create routines, git fit.</h2>
 
-            <h5 id='title-sentence'>Create a routine.</h5>
         </div>
     )
 }
