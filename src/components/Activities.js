@@ -1,9 +1,9 @@
 import React , { useEffect }  from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { useLocation, useHistory } from 'react-router-dom';
 import { fetchAllActivities } from '../api';
-import { GetSingleActivity } from '.'
-import CreateActivity from './CreateActivity';
+//import { GetSingleActivity } from '.'
+//import CreateActivity from './CreateActivity';
 
 /*Activities component */
 
@@ -45,15 +45,33 @@ const Activities = ( {token, activities, setActivities} ) => {
              type='text'
              placeholder='search here'
              onChange={(e) => { history.push(e.target.value ? `/activities?searchTerm=${e.target.value}` : '/activities') }}
-            />       
+            />    
+
+           <div>
+           {sortedActivities.map(activity => {
+           return (
+            <div
+              key={activity.id}
+              id='single-routine'
+              style={{ border: "1px solid black", background: "bisque" }}>
+              <h4><u>Name of activity: </u>{activity.name}</h4>
+              <h4><u>Description: </u>{activity.description}</h4>
+              <h4><u>Activity Id: </u> {activity.id}</h4>
+             </div>
+            ) }) }
+           </div>
          
-         { token ? <CreateActivity token={token}/> : null }
-         {sortedActivities.map(activity =>
-           <GetSingleActivity key={activity.id} activity={activity}>
-             <Link to={`/activities/${activity.id}`}>See details</Link>
-           </GetSingleActivity>
-       )} </div> 
+         </div> 
     )
 }
 
 export default Activities;
+
+/*
+ { token ? <CreateActivity token={token}/> : null }
+         {sortedActivities.map(activity =>
+           <GetSingleActivity key={activity.id} activity={activity}>
+             <Link to={`/activities/${activity.id}`}>See details</Link>
+           </GetSingleActivity>
+       )}
+*/

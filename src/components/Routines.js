@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useLocation, useHistory } from "react-router-dom";
 import { fetchAllRoutines } from "../api";
-import { GetSingleRoutine } from ".";
-import CreateRoutine from "./CreateRoutine";
-
-//import { addUser } from '../api';
 
 /*Routines component */
 
@@ -18,7 +13,6 @@ const Routines = ({ token, routines, setRoutines }) => {
   useEffect(() => {
     const getData = async () => {
       const apiResponse = await fetchAllRoutines();
-      //console.log('apiResponse: ', apiResponse);//causing a console.log loop
       setRoutines(apiResponse);
     };
     getData();
@@ -41,7 +35,6 @@ const Routines = ({ token, routines, setRoutines }) => {
     <div>
       <h3>This is the Routines page.</h3>
 
-     
       <h5 id="search-word">Search: </h5>
       <input
         id="search-field"
@@ -85,16 +78,20 @@ const Routines = ({ token, routines, setRoutines }) => {
 export default Routines;
 
 /* 
+import { addUser } from '../api';
+import { Link } from "react-router-dom";
+import { GetSingleRoutine } from ".";
+import CreateRoutine from "./CreateRoutine";
+
 return ( 
     <h3>This is the Routines page.</h3>
+)
 
-    )
  {token ? <CreateRoutine token={token} /> : null}
 
-
-     { sortedRoutines.map(routine =>
-            <GetSingleRoutine key={routine.id} routine={routine}>
-              <Link to={`/routines/${routine.id}`}>See details</Link>
-            </GetSingleRoutine>
-        )}
+{ sortedRoutines.map(routine =>
+  <GetSingleRoutine key={routine.id} routine={routine}>
+    <Link to={`/routines/${routine.id}`}>See details</Link>
+</GetSingleRoutine>
+  )}
 */

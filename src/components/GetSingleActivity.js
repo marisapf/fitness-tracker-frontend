@@ -1,6 +1,6 @@
 import React from 'react';
 
-/*Renders a single activity  */
+/*Renders a single activity */
 
 //this component is used in SingleActivityView
 

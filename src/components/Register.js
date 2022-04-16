@@ -47,8 +47,6 @@ const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => 
 
         <button className='form-buttons' type='submit' >Submit</button>
 
-        { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
-
       </form>
 
     </div>
@@ -58,15 +56,6 @@ const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => 
 export default Register;
 
 /*
-const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    await addNewUser( username, password, setToken, setUser, setUserMessage, history);
-
-    setUsername('');
-    setPassword('');
-    
-  }
-
-
+ { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
+ 
 */

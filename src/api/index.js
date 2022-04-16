@@ -36,6 +36,7 @@ export const addNewUser = async (
     setUser({ username: result.username });
     setUserMessage(result.message);
     history.push("/");
+
   } catch (err) {
     console.error("Trouble adding user.", err);
     setUserMessage("Invalid username or password. Please try again.");
@@ -65,34 +66,30 @@ export const loginUser = async (
     const result = await response.json();
     
     console.log("result,", result);
-    
-    if (result.error) throw result.error;
 
-    if (result) {
       await fetch(`${APIURL}/users/me`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${result.token}`,
         },
-      });
+      })
 
       console.log("result.token,", result.token);
-      console.log("username,", result.user.username);
+      console.log("result.user.username,", result.user.username);
+      console.log('result.message:', result.message)
       
       setToken(result.token);
       setUser({ username: result.user.username });
       setUserMessage(result.message);
+      history.push("/");
 
-      if (result.token) {
-        history.push("/");
-      }
-    }
   } catch (err) {
     console.error("Trouble logging in.", err);
     setUserMessage("Invalid username or password. Please try again.");
   }
 };
 
+/*fetch user's profile*/
 export const fetchMyProfile = async(token,setUser) => {
 
   try {
@@ -103,7 +100,9 @@ export const fetchMyProfile = async(token,setUser) => {
       },
   })
   const result = await response.json(); 
-  console.log('fetchMyProfile, result,',result);
+  console.log('fetchMyProfile, result,',result); 
+  //setsUser, {'id': 814,'username': Sam}
+  
   setUser(result);
 
   } catch (err) {
@@ -119,7 +118,7 @@ export const fetchAllRoutines = async () => {
       const result = await response.json();
       
       console.log('routines, result', result);
-      //if (result.error) throw result.error;
+     
       return result;
 
   } catch (err) {
@@ -127,25 +126,28 @@ export const fetchAllRoutines = async () => {
   }
 };
 
-export const fetchRoutinesByUsername = async(token, username, setRoutines) => {
+/*fetchRoutinesByUsername*/
+export const fetchRoutinesByUsername = async(token,username) => {
     try {
-        const response = await fetch(`${APIURL}/users/:${username}/routines`,{
+
+        const response = await fetch(`${APIURL}/users/${username}/routines`,{
         method: "GET",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
           },
     })
-    const result = response.json();
-    
+    const result = await response.json();
+    console.log('fetchRoutinesByUsername, ', username)
     console.log('fetchRoutinesByUsername, result, ', result);
-    
-    setRoutines(result);
+    return result;
+
     } catch (err) {
       console.error('Trouble fetching users routines.', err)
   }
 };
 
+/*createNewRoutine*/
 export const createNewRoutine = async (token, name, goal, isPublic, setName, setGoal, setIsPublic) => {
 
     try {
@@ -164,7 +166,6 @@ export const createNewRoutine = async (token, name, goal, isPublic, setName, set
         const result = await response.json();
         
         console.log('createNewRoutine,', result )
-        //if (result.error) throw result.error;
         
         setName(name);
         setGoal(goal);
@@ -175,7 +176,52 @@ export const createNewRoutine = async (token, name, goal, isPublic, setName, set
     }
 };
 
+export const updateRoutine = async (token, name, goal, setRoutine, routineId) => {
 
+      try {
+        const response = await fetch(`${APIURL}/routines/${routineId}`, {
+          method: "PATCH",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+                  name,
+                  goal,
+          })
+      });
+      const result = await response.json();
+      console.log('updateRoutine, result', result);
+      setRoutine(result)
+      }
+      catch (err) {
+        console.error('Trouble updating routine.', err)
+      }
+}
+
+export const deleteRoutine = async (token, routineId) => {
+
+  try {
+    const response = await fetch(`${APIURL}/routines/${routineId}`, {
+      method: "DELETE",
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+  });
+  const result = await response.json();
+  console.log('deleteRoutine, result', result);
+  return result;
+  }
+  catch (err) {
+    console.error('Trouble deleting routine.', err)
+  }
+}
+
+
+
+
+/*fetchAllActivities*/
 export const fetchAllActivities = async () => {
 
   try {
@@ -191,6 +237,7 @@ export const fetchAllActivities = async () => {
   }
 };
 
+/*createNewActivity*/
 export const createNewActivity = async (token, name, description, setName, setDescription) => {
 
   try {
@@ -207,8 +254,8 @@ export const createNewActivity = async (token, name, description, setName, setDe
       });
       const result = await response.json();
       
-      console.log('createNewRoutine,', result )
-      //if (result.error) throw result.error;
+      console.log('createNewActivity,', result )
+     
       setName(name);
       setDescription(description);
       
@@ -222,46 +269,3 @@ export const createNewActivity = async (token, name, description, setName, setDe
 /*
 */
 
-/* line 28, register if (result.error) throw result.error;
-
-      if (result) {
-          await fetch(`${APIURL}/users/me`, {
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${result.token}`
-              }
-          });
-
-          console.log('result.token,',result.token);
-          //console.log('user.username,', result.user.username);
-          setToken(result.token);
-          setUser({ username: result.username});
-          //setUser({ username: result.user.username });
-          setUserMessage(result.message);
-
-          if (result.token) {
-              history.push('/');
-          }
-
-
-  from login line 58
-
-  if (result) {
-          await fetch(`${APIURL}/users/me`, {
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${result.token}`
-              }
-          });
-
-          console.log('result.token,',result.token)
-          console.log('username,', username);
-          setToken(result.token);
-          setUser({ username: result.user.username })
-          setUserMessage(result.message);
-
-          if (result.token) {
-              history.push('/');
-          }
-      }
-      }*/

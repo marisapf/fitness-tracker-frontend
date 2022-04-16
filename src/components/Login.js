@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import {  useHistory } from 'react-router-dom';
 import { loginUser } from '../api';
 
+/*Login component */    
 
-/*Login component */
-
-const Login = ({ token, setToken, setUser, setUserMessage, userMessage}) => {
+const Login = ({ setToken, setUser, setUserMessage }) => {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +17,8 @@ const Login = ({ token, setToken, setUser, setUserMessage, userMessage}) => {
 
     setUsername('');
     setPassword('');
-  }
+    
+  };
 
   return ( 
     <div>
@@ -43,8 +44,6 @@ const Login = ({ token, setToken, setUser, setUserMessage, userMessage}) => {
 
         <button className='form-buttons' type='submit' >Submit</button>
 
-        { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
-
       </form>
 
     </div>
@@ -55,6 +54,8 @@ const Login = ({ token, setToken, setUser, setUserMessage, userMessage}) => {
 export default Login;
 
 /*
-const params = useParams();
+//, userMessage, token,
+
+{ !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
        
   */

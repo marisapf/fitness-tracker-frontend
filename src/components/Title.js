@@ -9,9 +9,8 @@ const Title = () => {
             </h1>
             
             <h2>Try a routine, sign up, create routines, git fit.</h2>
-
         </div>
     )
-}
+};
 
 export default Title;

@@ -19,7 +19,7 @@ const CreateActivity = ({ token, setActivities }) => {
         setName('');
         setDescription('');
         
-    }
+    };
 
     return (
 
@@ -42,6 +42,6 @@ const CreateActivity = ({ token, setActivities }) => {
             <button id='form-buttons' type='submit'>Create Activity</button>
         </form>
     )
-}
+};
 
 export default CreateActivity;

@@ -1,95 +1,99 @@
-import React from 'react';
-import CreateRoutine from './CreateRoutine';
-import CreateActivity from './CreateActivity';
-//, { useState, useEffect }
-//import { deleteRoutine, createRoutine, createActivity } from '..api';
-//import { fetchMyProfile, fetchMyRoutines } from '../api';
+import React, { useEffect, useState } from "react";
+import CreateRoutine from "./CreateRoutine";
+import CreateActivity from "./CreateActivity";
+import { fetchRoutinesByUsername, updateRoutine, deleteRoutine } from "../api";
 
+const MyRoutines = ({ token, user, setRoutines, setActivities }) => {
+  
+const [myRoutines, setMyRoutines] = useState([]);
+//const [routine, setRoutine] = useState({});
+const [routineId, setRoutineId] = useState(null)
 
-const MyRoutines = ( {token, user, setUser, setRoutines, setActivities} ) => {
+  useEffect(() => {
+    const getData = async () => {
+      const apiResponse = await fetchRoutinesByUsername(token, user.username);
+      setMyRoutines(apiResponse);
 
+      console.log("my routines, ", apiResponse); //an array of routines by user
+      console.log("my routines, routines", myRoutines);
+    };
+    getData();
+  }, []);
 
-return (
+  const handleSubmit = async(event) =>{
+        event.preventDefault();
+
+        await updateRoutine(token, setRoutineId, routineId)
+
+        await deleteRoutine(token, routineId);
+  }
+
+  return (
     <div id="my-routines-page">
-    {user.username && token ? 
-    <h2>{user.username + "'s "} Routines</h2>
-    : <h2>User's Routines Page</h2> }
-    
-    <CreateRoutine token={token} setRoutines={setRoutines}/>
+      {token ? (
+        <>
+          <h2>{user.username + "'s "} Routines</h2>
+          <CreateRoutine token={token} setRoutines={setRoutines} />
+          <CreateActivity token={token} setActivities={setActivities} />
 
-    <CreateActivity token={token} setActivities={setActivities}/>
+          {myRoutines.map((routine) => (
+            <div
+              key={routine.id}
+              id="single-routine"
+              style={{ border: "1px solid black", background: "bisque" }}
+            >
+              <h4>
+                <u>Name of routine: </u>
+                {routine.name}
+              </h4>
+              <h4>
+                <u>Goal: </u>
+                {routine.goal}
+              </h4>
+              <h4>
+                <u>Routine Id:</u> {routine.id}
+              </h4>
+
+              {routine.activities.map((activity) => {
+                return (
+                  <div id="routine-card"
+                   key={activity.id}>
+                    <h2>{activity.name}</h2>
+                    <p>Description: {activity.description}</p>
+                    <p>Duration: {activity.duration}</p>
+                    <p>Count: {activity.count}</p> 
+                  </div>
+                );
+              })}
+
+              <button type="button" className="button"
+              onClick={() => setRoutineId(routine.id)}>Edit</button>
+              
+            </div>
+          ))}
+        </>
+      ) : (
+        <h2>Please log in to see your routines</h2>
+      )}
     </div>
-)
-
+  );
 };
 
 export default MyRoutines;
 
 /*
 
-const MyRoutines = ( {token, user, setUser, routines, setRoutines} ) => {
- 
-    const [myRoutines, setMyRoutines] = useState([]);
+<button type="button" className="button"
+onClick={() => setRoutineId(routine.id)}>Edit</button>
 
-    useEffect(() => {
-        const getUser = async() => {
-            const apiResp = await fetchMyProfile(token,setUser)
-            setUser(apiResp);
-        }
-        const getRoutines = async() => {
-            const apiResp = await fetchAllRoutines()
-        }
-    })
+import { createRoutine, updateRoutine, deleteRoutine, createActivity } from '..api';
 
+const [myRoutines,setMyRoutines] = useState([]);
+const [myActivities, setMyActivities] = useState([]);
 
-
-}
-
-
-
-
-<CreateRoutine token={token} setRoutines={setRoutines} />
-
-    {myRoutines.filter(routine => routine.creatorId === user.id)
-    .map((routine, index) => {
-        return (
-            <div id='my-routines'>
-            <form key={index} 
-                  style={{ border: "1px solid black", background: "thistle" }}>
-                  <h4><u>Routine name:</u>{routine.name}</h4>
-                  <h4><u>Routine goal:</u>{routine.goal}</h4>
-                  <h4><u>Routine Id: '</u>{routine.id}'</h4>
-            </form>  
-            </div>
-        )
-    })}
-
-
-
-useEffect(() => {
- const getRoutines = async() => {
-     const apiResponse = await fetchMyRoutines(token, username, setMyRoutines);
-     setRoutines(apiResponse)
-    }
-    getRoutines();
-  },); 
-
-   //const [routineId, setRoutineId] = useState();
-  const [myRoutines, setMyRoutines ] = useState([]);
-
-  useEffect(() => {
-    fetchMyProfile(token, setUser);
-    fetchMyRoutines(token, user.username, setRoutines)
-     },[token]);
-
-
-const handleDelete = async (routineId) => {
-
-    await deleteRoutine(routineId, token);
-
-    //await fetchMyRoutines(token, setMyRoutines);
-
-    const updatedRoutines = myRoutines.filter(routine => routineId !== routine.id)
-    setMyRoutines(updatedRoutines);
-}
+   
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJpZCI6ODE0LCJ1c2VybmFtZSI6IlNhbSIsImlhdCI6MTY1MDAzNjgwNywiZXhwIjoxNjUwNjQxNjA3fQ.
+jxDXj6rY3haFGHhQ5gRNzOLsUFrI8GgLC47Q5k25pB8"
+user: {id: 814, username: 'Sam'}
 */

@@ -41,10 +41,13 @@ const App = () => {
         <Link to="/activities" style={{ margin: "20px" }}>Activities</Link>
         <Link to="/routines" style={{ margin: "20px" }}>Routines</Link>
         <Link to="/users/:username/routines" style={{ margin: "20px" }}>My Routines</Link>
-        <Link to="/login" style={{ margin: "20px" }}>Log in</Link>
         <Link to="/register" style={{ margin: "20px" }}>Sign up</Link>
 
-  
+        {token ?
+        <Link to="/login" style={{ margin: "20px" }}
+        onClick={()=> setToken('')}>Log out</Link>
+        : <Link to="/login" style={{ margin: "20px "}}>Log in</Link> }
+
         <Route path="/login">
             <Login
             user={user}
@@ -66,7 +69,7 @@ const App = () => {
              setUserMessage={setUserMessage}/>
         </Route>
 
-        <Route path="/users/:username/routines">
+        <Route path='/users/:username/routines'>
             <MyRoutines
             user={user}
             setUser={setUser}
@@ -109,7 +112,6 @@ const App = () => {
             <SingleRoutineView />
         </Route>
 
-
       </div>
       </BrowserRouter>
  
@@ -120,33 +122,15 @@ const App = () => {
 export default App;
 
 /* 
-
-
-
  <Route exact path="/routines/:routineId">
             <SingleRoutineView
               routines={routines}
             />
-         </Route>
+  </Route>
+
   <Route exact path="/routines/:routineId">
             <GetSingleRoutine />
-          </Route>
-
- 
-
-<Home user={user} userMessage={userMessage} token={token} />
-
-          <Route exact path="/login/:method">
-            <Login
-              user={user}
-              setUser={setUser}
-              token={token}
-              setToken={setToken}
-              userMessage={userMessage}
-              setUserMessage={setUserMessage}
-            />
-          </Route> 
-
+  </Route>
 
 
 */
