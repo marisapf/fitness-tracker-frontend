@@ -148,7 +148,7 @@ export const fetchRoutinesByUsername = async(token,username) => {
 };
 
 /*createNewRoutine*/
-export const createNewRoutine = async (token, name, goal, isPublic, setName, setGoal, setIsPublic) => {
+export const createNewRoutine = async (token, name, goal, isPublic, setName, setGoal, setIsPublic, history) => {
 
     try {
         const response = await fetch(`${APIURL}/routines`, {
@@ -170,13 +170,14 @@ export const createNewRoutine = async (token, name, goal, isPublic, setName, set
         setName(name);
         setGoal(goal);
         setIsPublic(isPublic);
+        history.push('/routines');
 
     } catch (err) {
         console.error('Trouble creating routine.', err)
     }
 };
 
-export const updateRoutine = async (token, name, goal, setRoutine, routineId) => {
+export const updateRoutine = async (routineId, token, name, goal) => {
 
       try {
         const response = await fetch(`${APIURL}/routines/${routineId}`, {
@@ -188,16 +189,18 @@ export const updateRoutine = async (token, name, goal, setRoutine, routineId) =>
           body: JSON.stringify({
                   name,
                   goal,
+                  isPublic: true
           })
       });
       const result = await response.json();
+      
       console.log('updateRoutine, result', result);
-      setRoutine(result)
+      return result;
       }
       catch (err) {
         console.error('Trouble updating routine.', err)
       }
-}
+};
 
 export const deleteRoutine = async (token, routineId) => {
 
@@ -209,17 +212,15 @@ export const deleteRoutine = async (token, routineId) => {
           'Authorization': `Bearer ${token}`
       },
   });
-  const result = await response.json();
-  console.log('deleteRoutine, result', result);
-  return result;
+    const result = await response.json();
+    console.log('deleteRoutine, result', result);
+    
+    return result;
   }
   catch (err) {
     console.error('Trouble deleting routine.', err)
   }
 }
-
-
-
 
 /*fetchAllActivities*/
 export const fetchAllActivities = async () => {
@@ -264,8 +265,118 @@ export const createNewActivity = async (token, name, description, setName, setDe
   }
 };
 
+/*add activity to routine*/
+export const addActivityToRoutine = async(routineId, count, setCount, duration, setDuration) => {
 
+  try {
+    const response = await fetch(`${APIURL}/routines/${routineId}/activities`, {
+      method: "POST",
+      body: JSON.stringify({
+            
+              count,
+              duration
+      })
+  });
+  const result = await response.json();
+  
+  console.log('attachActivityToRoutine, result', result )
+  setCount(count);
+  setDuration(duration);
+    
+  } catch (err) {
+  console.error('Trouble adding activity.', err)
+  }
+}
+
+/*updateActivity*/
+export const updateActivity = async (activityId, token, name, setName, 
+  description, setDescription, setActivityId, activities, setActivities) => {
+
+      try {
+        const response = await fetch(`${APIURL}/activities/${activityId}`, {
+          method: "PATCH",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+                  name,
+                  description,
+          })
+      });
+      const result = await response.json();
+      
+      console.log('updateActivity, result', result);
+      //setRoutine(result); 
+
+      if(result & result.name) {
+        const newActivities = activities.map(activity => {
+          if(activity.id === activityId){
+            return result;
+          } else {
+            return activity;
+          }
+        });
+        setActivities(newActivities);
+        setName('');
+        setDescription('');
+        setActivityId(null);
+      }
+      }
+      catch (err) {
+        console.error('Trouble updating activity.', err)
+      }
+};
+
+/*fetch list of public routines that feature activity*/
+
+export const getRoutinesByActivityId = async (activityId) => {
+  try {
+    const response = await fetch(`${APIURL}/${activityId}/routines`, {
+      headers: {
+          'Content-Type': 'application/json',
+      },
+  });
+  const result = await response.json();
+      
+  console.log('routines by activity, result', result);
+ 
+  return result;
+
+} catch (err) {
+  console.error('Trouble getting routine.', err)
+}
+};
+
+/*deleteRoutineActivity*/
+export const deleteRoutineActivity = async (token, routineActivityId) => {
+
+  try {
+    const response = await fetch(`${APIURL}/routine_activity/${routineActivityId}`, {
+      method: "DELETE",
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+  });
+  const result = await response.json();
+  console.log('deleteRoutineActivity, result', result);
+  return result;
+  }
+  catch (err) {
+    console.error('Trouble deleting routine activity.', err)
+  }
+}
 
 /*
+
+if(result & result.name) {
+        const newRoutines = routines.map(routine => {
+          if(routine.id === routineId){
+            return result;
+          } else {
+            return routine;
+          }
+        });
 */
 

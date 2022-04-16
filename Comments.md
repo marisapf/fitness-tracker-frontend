@@ -71,3 +71,42 @@ createNewRoutine
   //if (result.error) throw result.error;
 
  */
+
+ /*import React, { useState } from 'react'
+import { deleteRoutine } from '../api';
+
+
+
+const DeleteRoutine = ( {token} ) => {
+
+    const [routineId, setRoutineId] = useState(null); 
+    const [routines, setRoutines] = useState({});
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        await deleteRoutine(routineId,token,setRoutineId,routines,setRoutines);
+    }
+
+    return (
+        <>
+        
+       <button onSubmit={handleSubmit}>
+        <h4>Delete Routine</h4>
+        </button>
+        </>
+    )
+};
+
+export default DeleteRoutine; */
+
+FROM MyRoutines
+/*useEffect(() => {
+    const getData = async () => {
+      const apiResponse = await fetchRoutinesByUsername(token, user.username);
+      setMyRoutines(apiResponse);
+      console.log("my routines, ", apiResponse); //an array of routines by user
+      console.log("my routines, routines", myRoutines);
+    };
+    getData();
+  }, []);*/

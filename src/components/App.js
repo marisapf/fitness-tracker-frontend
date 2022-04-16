@@ -9,6 +9,7 @@ import {
     Activities, 
     Routines,
     MyRoutines,
+    UpdateRoutine,
     GetSingleRoutine,
     SingleRoutineView,
     GetSingleActivity,
@@ -21,6 +22,7 @@ const App = () => {
   const [userMessage, setUserMessage] = useState('');
   const [activities, setActivities] = useState([]);
   const [routines, setRoutines] = useState([]);
+  const [myRoutines, setMyRoutines] = useState([]);
   
   return (
     <div >
@@ -40,7 +42,7 @@ const App = () => {
         <Link to="/" style={{ margin: "20px" }}> Home</Link>   
         <Link to="/activities" style={{ margin: "20px" }}>Activities</Link>
         <Link to="/routines" style={{ margin: "20px" }}>Routines</Link>
-        <Link to="/users/:username/routines" style={{ margin: "20px" }}>My Routines</Link>
+        <Link to="/myroutines" style={{ margin: "20px" }}>My Routines</Link>
         <Link to="/register" style={{ margin: "20px" }}>Sign up</Link>
 
         {token ?
@@ -69,16 +71,20 @@ const App = () => {
              setUserMessage={setUserMessage}/>
         </Route>
 
-        <Route path='/users/:username/routines'>
+        <Route exact path='/myroutines'>
             <MyRoutines
             user={user}
             setUser={setUser}
             token={token}
             setToken={setToken}
-            routines={routines}
-            setRoutines={setRoutines}
+            myRoutines={myRoutines}
+            setMyRoutines={setMyRoutines}
             />
         </Route>
+
+        <Route path='/update/:routineId'>
+          <UpdateRoutine token={token} myRoutines={myRoutines} />
+        </Route>  
 
         <Route path="/activities">
             <Activities
