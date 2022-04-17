@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import  './index.css' 
 
 import { 
     Title, 
@@ -42,7 +43,7 @@ const App = () => {
         <Link to="/" style={{ margin: "20px" }}> Home</Link>   
         <Link to="/activities" style={{ margin: "20px" }}>Activities</Link>
         <Link to="/routines" style={{ margin: "20px" }}>Routines</Link>
-        <Link to="/myroutines" style={{ margin: "20px" }}>My Routines</Link>
+        <Link to="/my_routines" style={{ margin: "20px" }}>My Routines</Link>
         <Link to="/register" style={{ margin: "20px" }}>Sign up</Link>
 
         {token ?
@@ -71,7 +72,7 @@ const App = () => {
              setUserMessage={setUserMessage}/>
         </Route>
 
-        <Route exact path='/myroutines'>
+        <Route exact path='/my_routines'>
             <MyRoutines
             user={user}
             setUser={setUser}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { createNewActivity, fetchAllActivities } from '../api';
+import { addActivityToRoutine, createNewActivity, fetchAllActivities } from '../api';
 
 /*This component lets user create a new activity */
-const CreateActivity = ({ token, setActivities }) => {
+const CreateActivity = ({ token, setActivities, routineId }) => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -11,7 +11,7 @@ const CreateActivity = ({ token, setActivities }) => {
         event.preventDefault();
 
         await createNewActivity(token, name, description, setName, setDescription);
-        
+    
         console.log('create activity, name, description: ', name, description);
 
         await fetchAllActivities(setActivities);
@@ -23,7 +23,7 @@ const CreateActivity = ({ token, setActivities }) => {
 
     return (
 
-        <form className='activity-container' onSubmit={handleSubmit}>
+        <form className='create-activity-container' onSubmit={handleSubmit}>
             <h5>Create an activity</h5>
             <input className='input-field'
                 type='text'
@@ -45,3 +45,9 @@ const CreateActivity = ({ token, setActivities }) => {
 };
 
 export default CreateActivity;
+
+/*
+if(routineId){
+    await addActivityToRoutine(routineId, count, setCount, duration, setDuration)
+}
+*/

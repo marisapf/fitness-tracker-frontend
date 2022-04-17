@@ -4,7 +4,7 @@ import { loginUser } from '../api';
 
 /*Login component */    
 
-const Login = ({ setToken, setUser, setUserMessage }) => {
+const Login = ({ token, setToken, setUser, userMessage, setUserMessage }) => {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -45,7 +45,8 @@ const Login = ({ setToken, setUser, setUserMessage }) => {
         <button className='form-buttons' type='submit' >Submit</button>
 
       </form>
-
+  
+      { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
     </div>
   
     )
@@ -54,8 +55,4 @@ const Login = ({ setToken, setUser, setUserMessage }) => {
 export default Login;
 
 /*
-//, userMessage, token,
-
-{ !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
-       
-  */
+*/

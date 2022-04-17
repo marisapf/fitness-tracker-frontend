@@ -4,7 +4,7 @@ import { fetchAllRoutines } from "../api";
 
 /*Routines component */
 
-const Routines = ({ token, routines, setRoutines }) => {
+const Routines = ({ routines, setRoutines }) => {
   const { search } = useLocation();
   const history = useHistory();
   const searchParams = new URLSearchParams(search);
@@ -35,32 +35,27 @@ const Routines = ({ token, routines, setRoutines }) => {
     <div>
       <h3>This is the Routines page.</h3>
 
-      <h5 id="search-word">Search: </h5>
-      <input
-        id="search-field"
-        type="text"
-        placeholder="search here"
+      <h5 className="search-word">Search: </h5>
+      <input className="search-field" type="text" placeholder="search here"
         onChange={(e) => {
-          history.push(
-            e.target.value
-              ? `/routines?searchTerm=${e.target.value}`
+          history.push(e.target.value ? `/routines?searchTerm=${e.target.value}`
               : "/routines"
           );
         }}
       />
 
-      <div>
+      <div className='routine-section'>
         {sortedRoutines.map((routine) => {
           return (
-            <div key={routine.id} id="routine-card" style={{ border: "1px solid black", background: "bisque" }}>
+            <div key={routine.id} className="routine-container">
 
-              <h2>{routine.name}</h2>
+              <h2>Routine name: {routine.name}</h2>
               <h2>Created By: {routine.creatorName}</h2>
-              <p>{routine.goal}</p>
+              <p>Goal: {routine.goal}</p>
               {routine.activities.map((activity) => {
                 return (
                   <div key={activity.id} id="routine-card">
-                    <h2>{activity.name}</h2>
+                    <h2>Activity name: {activity.name}</h2>
                     <p>Description: {activity.description}</p>
                     <p>Duration: {activity.duration}</p>
                     <p>Count: {activity.count}</p>

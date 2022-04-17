@@ -37,22 +37,22 @@ const Activities = ( {token, activities, setActivities} ) => {
 
   return ( 
   <div>
-  <h3>This is the Activities page.</h3>
+  <h3 >This is the Activities page.</h3>
 
-  <h5 id='search-word'>Search: </h5>
+  <h5 className='search-word'>Search: </h5>
            <input
-             id='search-field'
+             className='search-field'
              type='text'
              placeholder='search here'
              onChange={(e) => { history.push(e.target.value ? `/activities?searchTerm=${e.target.value}` : '/activities') }}
             />    
 
-           <div>
+           <div className='activity-section'>
            {sortedActivities.map(activity => {
            return (
             <div
               key={activity.id}
-              id='single-routine'
+              className='activity-container'
               style={{ border: "1px solid black", background: "bisque" }}>
               <h4><u>Name of activity: </u>{activity.name}</h4>
               <h4><u>Description: </u>{activity.description}</h4>

@@ -14,6 +14,7 @@ export { default as CreateRoutine } from './CreateRoutine';
 export { default as MyRoutines } from './MyRoutines';
 export { default as UpdateRoutine } from './UpdateRoutine';
 export { default as UpdateActivity} from './UpdateActivity';
+export { default as AttachActivityToRoutine} from './AttachActivityToRoutine'
 //export {default as UpdateRoutineActivity} from './UpdateRoutineActivity';
 //export { default as DeleteRoutineActivity } from './DeleteRoutineActivity;
 export { default as APIURL } from './APIURL';

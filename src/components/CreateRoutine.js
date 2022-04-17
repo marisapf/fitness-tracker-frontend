@@ -25,7 +25,7 @@ const CreateRoutine = ({ token, setRoutines }) => {
 
     return (
 
-        <form className='routine-container' onSubmit={handleSubmit}>
+        <form className='create-routine-container' onSubmit={handleSubmit}>
             <h5>Create a routine.</h5>
             <input className='input-field'
                 type='text'
@@ -36,7 +36,7 @@ const CreateRoutine = ({ token, setRoutines }) => {
 
             <input className='input-field'
                 type='text'
-                placeholder='description'
+                placeholder='goal'
                 value={goal}
                 onChange={e => setGoal(e.target.value)} >
             </input>
@@ -48,7 +48,7 @@ const CreateRoutine = ({ token, setRoutines }) => {
                 onChange={e => setIsPublic(e.target.value)} >
             </input>
 
-            <button id='form-buttons' type='submit'>Create Routine</button>
+            <button className='button' type='submit'>Create Routine</button>
         </form>
     )
 }

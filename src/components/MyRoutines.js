@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import CreateRoutine from "./CreateRoutine";
 import CreateActivity from "./CreateActivity";
-import { useHistory } from "react-router-dom";
-
+import AttachActivityToRoutine from "./AttachActivityToRoutine";
 import { fetchRoutinesByUsername, deleteRoutine } from "../api";
 
-//, addActivityToRoutine,, useParams
-
-const MyRoutines = ({
-  token,
-  user,
-  myRoutines,
-  setMyRoutines,
-  setActivities,
-}) => {
+const MyRoutines = ({ token, user, myRoutines, 
+    setMyRoutines, setActivities,}) => {
+        
+  const { search } = useLocation();
   const history = useHistory();
-  //const [loggedIn, setLoggedIn] = useState(false)
-  //const { routineId } = useParams();
-  //const [count, setCount] = useState('');
-  //const [duration, setDuration] = useState('');
-
+  const searchParams = new URLSearchParams(search);
+  const searchTerm = searchParams.get("searchTerm") || "";
+  
   const getData = async () => {
     const apiResponse = await fetchRoutinesByUsername(token, user.username);
     setMyRoutines(apiResponse);
   };
   useEffect(() => {
       if(token) {
-         // setLoggedIn(true);
-         getData();
+       getData();
       } 
   }, []);
 
   const handleEdit = async (event, routineId) => {
     event.preventDefault();
-    //await updateRoutine(routineId, token, name, goal);
     history.push(`/update/${routineId}`);
   };
 
@@ -44,27 +35,50 @@ const MyRoutines = ({
   };
 
   console.log('myRoutines,',myRoutines)
-  console.log('token myroutines, ',token);
+  console.log('token MyRoutines, ',token);
+
+  const routineMatches = (routine, searchTerm) => {
+    const { name, goal } = routine;
+    const toCheck = [name, goal];
+    for (const field of toCheck) {
+      if (field.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return true;
+      }
+    }
+  };
+  const mySortedRoutines = myRoutines.filter((routine) =>
+    routineMatches(routine, searchTerm)
+  );
+
   return (
     <div id="my-routines-page">
       {token ? (
         <>
           <h2>{user.username + "'s "} Routines</h2>
+         
+          <h5 className="search-word">Search: </h5>
+          <input className="search-field" type="text" placeholder="search here"
+           onChange={(e) => {
+             history.push(e.target.value ? `/my_routines?searchTerm=${e.target.value}`
+             : "/routines"
+             );
+            }}
+           />
+
           <CreateRoutine token={token} setMyRoutines={setMyRoutines} />
           <CreateActivity token={token} setActivities={setActivities} />
-         
-          {myRoutines && myRoutines.map((routine) => {
+
+          <div className='routine-section'>
+          {mySortedRoutines.map((routine) => {
               return (
-                <div key={routine.id} id="single-routine"
-                  style={{ border: "1px solid black", background: "bisque" }}
-                >
+                <div key={routine.id} className="routine-container">
                   <h4><u>Name of routine: </u> {routine.name}</h4>
                   <h4><u>Goal: </u> {routine.goal}</h4>
                   <h4><u>Routine Id:</u> {routine.id}</h4>
 
                   {routine.activities.map((activity) => {
                     return (
-                      <div id="routine-card" key={activity.id}>
+                      <div id="activity-card" key={activity.id}>
                         <h2>{activity.name}</h2>
                         <p>Description: {activity.description}</p>
                         <p>Duration: {activity.duration}</p>
@@ -73,28 +87,35 @@ const MyRoutines = ({
                     );
                   })}
 
-                  <button type="submit"className="button"
-                  onClick={(e) => handleEdit(e, routine.id)}>Edit</button>
 
-                  <button type="submit"className="button"
-                   onClick={(e) => handleDelete(e, routine.id)}>Delete</button>
-
+                <AttachActivityToRoutine routineId={routine.id} token={token} />
                 
+                  <button type="submit"className="button"
+                  onClick={(e) => handleEdit(e, routine.id)}>Edit Routine</button>
+
+                  <button type="submit"className="button"
+                   onClick={(e) => handleDelete(e, routine.id)}>Delete Routine</button>
                 </div>
               );
-            })}
+            })} 
+            </div>
         </>
-      ) : (
-        <h2>Please log in to see your routines</h2>
-      )}
+      ) :  <h2>Please log in to see your routines</h2> }
     </div>
   );
+
 };
 
 export default MyRoutines;
 
 /*
-
+style={{ border: "1px solid black", background: "bisque" }}
+       <CreateActivity routineId={routine.id} token={token} setActivities={setActivities} />
+   // setLoggedIn(true);
+//const [loggedIn, setLoggedIn] = useState(false)
+  //const { routineId } = useParams();
+  //const [count, setCount] = useState('');
+  //const [duration, setDuration] = useState('');
 const handleAddActivity = async (event) => {
     event.preventDefault();
     await addActivityToRoutine(routineId, count, setCount, duration, setDuration);

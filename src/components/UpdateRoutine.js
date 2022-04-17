@@ -12,7 +12,7 @@ const UpdateRoutine = ({ token, myRoutines }) => {
     const handleEdit = async (event) => {
         event.preventDefault();
         await updateRoutine(routineId,token,name,goal);    
-        history.push('/myroutines');
+        history.push('/my_routines');
     }
 
     return <>

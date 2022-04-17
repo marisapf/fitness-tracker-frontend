@@ -81,7 +81,7 @@ export const loginUser = async (
       setToken(result.token);
       setUser({ username: result.user.username });
       setUserMessage(result.message);
-      history.push("/");
+      history.push("/"); 
 
   } catch (err) {
     console.error("Trouble logging in.", err);
@@ -272,9 +272,8 @@ export const addActivityToRoutine = async(routineId, count, setCount, duration, 
     const response = await fetch(`${APIURL}/routines/${routineId}/activities`, {
       method: "POST",
       body: JSON.stringify({
-            
-              count,
-              duration
+            count,
+            duration
       })
   });
   const result = await response.json();
@@ -370,13 +369,5 @@ export const deleteRoutineActivity = async (token, routineActivityId) => {
 
 /*
 
-if(result & result.name) {
-        const newRoutines = routines.map(routine => {
-          if(routine.id === routineId){
-            return result;
-          } else {
-            return routine;
-          }
-        });
 */
 
