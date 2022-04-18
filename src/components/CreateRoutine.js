@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { createNewRoutine, fetchAllRoutines } from '../api';
+import { createNewRoutine,  fetchRoutinesByUsername } from '../api';
+//fetchAllRoutines,
 
 /*This component lets user create a new activity */
-const CreateRoutine = ({ token, setRoutines }) => {
+const CreateRoutine = ({ token, setMyRoutines, user }) => {
 
     const [name, setName] = useState('');
     const [goal, setGoal] = useState('');
     const [isPublic, setIsPublic] = useState(true);
     
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -15,13 +17,18 @@ const CreateRoutine = ({ token, setRoutines }) => {
         
         console.log('create routine, name, goal, isPublic: ', name, goal, isPublic);
 
-        await fetchAllRoutines(setRoutines);
+        const apiResp = await fetchRoutinesByUsername(token, user.username)
+        
+        console.log('create routine, user.username', user.username);
+        
+        setMyRoutines(apiResp);
 
         setName('');
         setGoal('');
-        setIsPublic(true);
-        
+        setIsPublic(true);  
+      
     }
+
 
     return (
 
@@ -54,3 +61,4 @@ const CreateRoutine = ({ token, setRoutines }) => {
 }
 
 export default CreateRoutine;
+

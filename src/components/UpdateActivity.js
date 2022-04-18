@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 import { updateActivity } from '../api';
+import { useParams, useHistory } from 'react-router-dom';
 
-const UpdateActivity = ({ token }) => {
+const UpdateActivity = ({token, activities}) => {
+    const { activityId } = useParams();
 
-    const [activityId, setActivityId] = useState(null);
-    const [name, setName ] = useState('');
-    const [description, setDescription] = useState('')
-    const [activity, setActivities] = useState({});
+    //const [activeEdit] = activities.filter(activity => activity.id === Number(activityId));
+    //const [name, setName] = useState(activeEdit.name);
+   //  const [description, setDescription] = useState(activeEdit.description);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const history = useHistory();
+  
 
-    const handleSubmit = async (event) => {
+    const handleEdit = async (token, event) => {
         event.preventDefault();
-
-        await updateActivity(activityId,token,name,setName,
-            description,setDescription,setActivityId,activity,setActivities);
+        await updateActivity(activityId,token,name,description);
+        history.push('/activities');
     }
 
     return <>
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleEdit}>
         <h4>Edit Activity</h4>
         
         <input className='input-field' 
@@ -33,6 +37,8 @@ const UpdateActivity = ({ token }) => {
         onChange={e => setDescription(e.target.value)}
         ></input>
 
+         <button type="submit" className="button"
+         >Edit</button> 
         </form>
     </>
 }

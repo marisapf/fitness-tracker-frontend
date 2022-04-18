@@ -265,39 +265,16 @@ export const createNewActivity = async (token, name, description, setName, setDe
   }
 };
 
-/*add activity to routine*/
-export const addActivityToRoutine = async(routineId, count, setCount, duration, setDuration) => {
-
-  try {
-    const response = await fetch(`${APIURL}/routines/${routineId}/activities`, {
-      method: "POST",
-      body: JSON.stringify({
-            count,
-            duration
-      })
-  });
-  const result = await response.json();
-  
-  console.log('attachActivityToRoutine, result', result )
-  setCount(count);
-  setDuration(duration);
-    
-  } catch (err) {
-  console.error('Trouble adding activity.', err)
-  }
-}
-
 /*updateActivity*/
-export const updateActivity = async (activityId, token, name, setName, 
-  description, setDescription, setActivityId, activities, setActivities) => {
-
+export const updateActivity = async (activityId,token,name, description ) => {
+//setName, setDescription,activities, setActivities
       try {
         const response = await fetch(`${APIURL}/activities/${activityId}`, {
           method: "PATCH",
           headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-          },
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
           body: JSON.stringify({
                   name,
                   description,
@@ -306,21 +283,7 @@ export const updateActivity = async (activityId, token, name, setName,
       const result = await response.json();
       
       console.log('updateActivity, result', result);
-      //setRoutine(result); 
-
-      if(result & result.name) {
-        const newActivities = activities.map(activity => {
-          if(activity.id === activityId){
-            return result;
-          } else {
-            return activity;
-          }
-        });
-        setActivities(newActivities);
-        setName('');
-        setDescription('');
-        setActivityId(null);
-      }
+      return result;
       }
       catch (err) {
         console.error('Trouble updating activity.', err)
@@ -347,6 +310,56 @@ export const getRoutinesByActivityId = async (activityId) => {
 }
 };
 
+/*add activity to routine*/
+export const addActivityToRoutine = async(routineId, activityId, count, setCount, duration, setDuration) => {
+
+  try {
+    const response = await fetch(`${APIURL}/routines/${routineId}/activities`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+    },
+      body: JSON.stringify({
+            activityId,
+            count,
+            duration
+      })
+  });
+  const result = await response.json();
+  
+  console.log('attachActivityToRoutine, result', result )
+  setCount(count);
+  setDuration(duration);
+  //history.push('/my_routines')
+  } catch (err) {
+  console.error('Trouble adding activity.', err)
+  }
+}
+
+export const updateRoutineActivity = async (routineActivityId, token, count, duration) => {
+
+  try {
+    const response = await fetch(`${APIURL}/routine_activities/${routineActivityId}`, {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+             count,
+             duration
+      })
+  });
+  const result = await response.json();
+  
+  console.log('updateRoutineActivity, result', result);
+  return result;
+  }
+  catch (err) {
+    console.error('Trouble updating routine activity.', err)
+  }
+};
+
 /*deleteRoutineActivity*/
 export const deleteRoutineActivity = async (token, routineActivityId) => {
 
@@ -360,6 +373,7 @@ export const deleteRoutineActivity = async (token, routineActivityId) => {
   });
   const result = await response.json();
   console.log('deleteRoutineActivity, result', result);
+  //history.push('/my_routines')
   return result;
   }
   catch (err) {
@@ -369,5 +383,18 @@ export const deleteRoutineActivity = async (token, routineActivityId) => {
 
 /*
 
-*/
+ /* if(result & result.name) {
+        const newActivities = activities.map(activity => {
+          if(activity.id === activityId){
+            return result;
+          } else {
+            return activity;
+          }
+        });
+        setActivities(newActivities);
+      // setName('');
+       // setDescription('');
+        
+      }
+   */
 

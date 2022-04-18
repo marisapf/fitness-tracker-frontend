@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { addActivityToRoutine, createNewActivity, fetchAllActivities } from '../api';
+import { createNewActivity, fetchAllActivities } from '../api';
 
 /*This component lets user create a new activity */
-const CreateActivity = ({ token, setActivities, routineId }) => {
+const CreateActivity = ({ token, setActivities }) => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -14,7 +14,9 @@ const CreateActivity = ({ token, setActivities, routineId }) => {
     
         console.log('create activity, name, description: ', name, description);
 
-        await fetchAllActivities(setActivities);
+        const apiResp = await fetchAllActivities();
+
+        setActivities(apiResp);
 
         setName('');
         setDescription('');

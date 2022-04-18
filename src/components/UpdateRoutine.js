@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { updateRoutine } from '../api';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const UpdateRoutine = ({ token, myRoutines }) => {
     const { routineId } = useParams();

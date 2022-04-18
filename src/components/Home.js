@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Home = ({ token, user, userMessage }) => {
-console.log('login, home, token, user, user.name:', token, user, user.username)//displays
+console.log('login, home, token, user, user.username:', token, user, user.username)//displays
 console.log('home, userMessage:', userMessage); //displays nothing????
 
     return (

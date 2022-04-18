@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-//import { useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { addActivityToRoutine } from '../api';
 
 const AttachActivityToRoutine = (routineId) => {
 
-   //const { routineId } = useParams();
+   const history = useHistory();
    const [count, setCount] = useState('')
    const [ duration, setDuration] = useState('');
 
@@ -17,7 +17,7 @@ const handleCreateRoutineActivity = async (event) => {
 
     setCount('');
     setDuration('');
-  
+    history.push('/my_routines')
 }
 
 return (
