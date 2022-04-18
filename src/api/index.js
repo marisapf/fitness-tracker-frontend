@@ -3,9 +3,27 @@ import { APIURL } from "../components";
 
 // THIS IS WHERE YOUR CLIENT SIDE API CODE LIVES
 
-export const callApi = async ({ url, method, token, body }) => {
+/*export const callApi = async ({ url, method, token, body }) => {
+
+  try {
+    const response = await fetch(`${APIURL}/url`, {
+      method: 'method'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error){
+    console.error(error)
+  }
+
+
   // CALL API
-};
+}; */
 
 /*addUser lets a user register */
 export const addNewUser = async (
@@ -81,6 +99,10 @@ export const loginUser = async (
       setToken(result.token);
       setUser({ username: result.user.username });
       setUserMessage(result.message);
+
+      localStorage.setItem('token', JSON.stringify(result.token));
+      localStorage.setItem('user', JSON.stringify(result.user));
+
       history.push("/"); 
 
   } catch (err) {
@@ -311,7 +333,7 @@ export const getRoutinesByActivityId = async (activityId) => {
 };
 
 /*add activity to routine*/
-export const addActivityToRoutine = async(routineId, activityId, count, setCount, duration, setDuration) => {
+export const addActivityToRoutine = async(routineId, activityId, count, duration) => {
 
   try {
     const response = await fetch(`${APIURL}/routines/${routineId}/activities`, {
@@ -328,9 +350,8 @@ export const addActivityToRoutine = async(routineId, activityId, count, setCount
   const result = await response.json();
   
   console.log('attachActivityToRoutine, result', result )
-  setCount(count);
-  setDuration(duration);
-  //history.push('/my_routines')
+  return result;
+
   } catch (err) {
   console.error('Trouble adding activity.', err)
   }
@@ -364,7 +385,7 @@ export const updateRoutineActivity = async (routineActivityId, token, count, dur
 export const deleteRoutineActivity = async (token, routineActivityId) => {
 
   try {
-    const response = await fetch(`${APIURL}/routine_activity/${routineActivityId}`, {
+    const response = await fetch(`${APIURL}/routine_activities/${routineActivityId}`, {
       method: "DELETE",
       headers: {
           'Content-Type': 'application/json',

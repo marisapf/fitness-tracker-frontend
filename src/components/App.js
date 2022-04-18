@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { fetchAllActivities } from '../api';
 import  './index.css' 
 
 import { 
@@ -18,16 +20,34 @@ import {
     SingleActivityView,
     MyActivities
                 } from "./index";
-
+                
 const App = () => {
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState('');
+
+  const userAuth = JSON.parse(localStorage.getItem('user'));
+  const userToken = JSON.parse(localStorage.getItem('token'));
+  const [user, setUser] = useState(userAuth);
+  const [token, setToken] = useState(userToken);
   const [userMessage, setUserMessage] = useState('');
   const [activities, setActivities] = useState([]);
   const [routines, setRoutines] = useState([]);
   const [myRoutines, setMyRoutines] = useState([]);
   const [myActivities, setMyActivities] = useState([]);
-  
+
+  useEffect(() => {
+     const getData = async () => {
+       const apiResponse = await fetchAllActivities();
+       //console.log('apiResponse: ', apiResponse);//causing a console.log loop
+       setActivities(apiResponse);
+     }
+     getData();
+   }, [setActivities]);
+    
+   const Logout = () => {
+    setUser(null);
+    //setMessage("You have successfully logged out")
+   // Snackbar()
+    localStorage.clear();
+  }
   
   return (
     <div >
@@ -52,7 +72,7 @@ const App = () => {
 
         {token ?
         <Link to="/login" style={{ margin: "20px" }}
-        onClick={()=> setToken('')}>Log out</Link>
+        onClick={Logout}>Log out</Link>
         : <Link to="/login" style={{ margin: "20px "}}>Log in</Link> }
 
         <Route path="/login">
@@ -84,6 +104,7 @@ const App = () => {
             setToken={setToken}
             myRoutines={myRoutines}
             setMyRoutines={setMyRoutines}
+            activities={activities}
             />
         </Route>
 
@@ -96,7 +117,7 @@ const App = () => {
         </Route> 
 
         <Route path='/my_routines/update/:routineId'>
-          <MyActivities token={token} myActivities={myActivities}/>
+          <MyActivities token={token} myRoutines={myRoutines} activities={activities}/>
         </Route>  
 
         <Route exact path="/activities">

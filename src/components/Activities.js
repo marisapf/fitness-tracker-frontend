@@ -13,14 +13,14 @@ const Activities = ( { token, activities, setActivities } ) => {
   const searchParams = new URLSearchParams(search);
   const searchTerm = searchParams.get('searchTerm') || '';
   
-  useEffect(() => {
-    const getData = async () => {
-      const apiResponse = await fetchAllActivities();
-      //console.log('apiResponse: ', apiResponse);//causing a console.log loop
-      setActivities(apiResponse);
-    }
-    getData();
-  }, [setActivities]);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const apiResponse = await fetchAllActivities();
+  //     //console.log('apiResponse: ', apiResponse);//causing a console.log loop
+  //     setActivities(apiResponse);
+  //   }
+  //   getData();
+  // }, [setActivities]);
   
   const activityMatches = (activity, searchTerm) => {
     const { name, description } = activity;   

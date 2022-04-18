@@ -7,7 +7,7 @@ import { fetchRoutinesByUsername, deleteRoutine } from "../api";
 /*Logged in users routines */
 
 const MyRoutines = ({ token, user, myRoutines, 
-    setMyRoutines }) => {
+    setMyRoutines, activities }) => {
 
   const { search } = useLocation();
   const history = useHistory();
@@ -34,6 +34,11 @@ const MyRoutines = ({ token, user, myRoutines,
     await deleteRoutine(token, routineId);
     getData();
   };
+
+  const manageActivity = (event, routineId) => {
+    event.preventDefault();
+    history.push(`/my_routines/update/${routineId}`)
+  }
 
   console.log('myRoutines,',myRoutines)
   console.log('token, MyRoutines, ',token);
@@ -102,14 +107,20 @@ const MyRoutines = ({ token, user, myRoutines,
                     );
                   })}
 
-                <AttachActivityToRoutine routineId={routine.id} token={token} />
+                {/* <AttachActivityToRoutine activities={activities} routineId={routine.id} token={token} /> */}
                 
                   <button type="submit"className="button"
                   onClick={(e) => handleEdit(e, routine.id)}>Edit Routine</button>
 
                   <button type="submit"className="button"
                    onClick={(e) => handleDelete(e, routine.id)}>Delete Routine</button>
+               
+                  <button type="submit" 
+                  onClick={(event) => manageActivity(event, routine.id)}>Manage Activities</button>
+
                 </div>
+
+
               );
             })} 
             </div>
