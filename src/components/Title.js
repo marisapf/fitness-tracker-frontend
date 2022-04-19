@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 
 const Title = () => {
+  return (
+    <div id="title-title">
+      <h1 id="title-words">Fitness Trackr</h1>
 
-    return (
-        <div id="title">
-            <h1 id='title-words'>
-               Fitness Trackr 
-            </h1>
-            
-            <h2>Try a routine, sign up, create routines, git fit.</h2>
-        </div>
-    )
+      <h2 id="title-sentence">
+        Try a routine, sign up, create routines, git fit.
+      </h2>
+    </div>
+  );
 };
 
 export default Title;

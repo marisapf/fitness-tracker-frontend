@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-import { addActivityToRoutine, deleteRoutineActivity, updateRoutineActivity } from "../api";
+import { deleteRoutineActivity, updateRoutineActivity } from "../api";
 import AttachActivityToRoutine from "./AttachActivityToRoutine";
 
 //Add an activity to a routine, this is a routine_activity
@@ -12,7 +12,7 @@ const MyActivities = ({ token, activities, myRoutines }) => {
 // ,myRoutines, setMyRoutines, myActivities, setMyActivities, , setRoutine_activity
     const { routineId } = useParams();
     const [activeEdit] = myRoutines.filter(routine => routine.id === Number(routineId));
-    const [activityId,setActivityId] = useState({});
+    //const [activityId,setActivityId] = useState({});
     const history = useHistory();
     const [count, setCount] = useState('')
     const [ duration, setDuration] = useState('');
@@ -41,7 +41,7 @@ const MyActivities = ({ token, activities, myRoutines }) => {
               <p>Count: {activity.count}</p>
               <p>Duration: {activity.duration}</p>
 
-              <form className='activity-form'>
+              <form >
                       <h5>Edit a routine activity.</h5>
                       <input className='input-field' style={{height:'20px', width:'100px'}}
                           type='number'

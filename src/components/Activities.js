@@ -1,6 +1,6 @@
-import React , { useEffect }  from 'react';
+import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { fetchAllActivities } from '../api';
+//import { fetchAllActivities } from '../api';
 //import { GetSingleActivity } from '.'
 import CreateActivity from './CreateActivity';
 

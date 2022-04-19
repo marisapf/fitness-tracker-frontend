@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { createNewRoutine,  fetchRoutinesByUsername } from '../api';
-//fetchAllRoutines,
 
 /*This component lets user create a new activity */
 const CreateRoutine = ({ token, setMyRoutines, user }) => {
@@ -58,7 +57,7 @@ const CreateRoutine = ({ token, setMyRoutines, user }) => {
             <button className='button' type='submit'>Create Routine</button>
         </form>
     )
-}
+};
 
 export default CreateRoutine;
 

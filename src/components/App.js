@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { fetchAllActivities } from '../api';
 import  './index.css' 
@@ -16,8 +15,8 @@ import {
     GetSingleRoutine,
     SingleRoutineView,
     UpdateActivity,
-    GetSingleActivity,
-    SingleActivityView,
+    //GetSingleActivity,
+    //SingleActivityView,
     MyActivities
                 } from "./index";
                 
@@ -31,7 +30,7 @@ const App = () => {
   const [activities, setActivities] = useState([]);
   const [routines, setRoutines] = useState([]);
   const [myRoutines, setMyRoutines] = useState([]);
-  const [myActivities, setMyActivities] = useState([]);
+  //const [myActivities, setMyActivities] = useState([]);
 
   useEffect(() => {
      const getData = async () => {
@@ -64,16 +63,16 @@ const App = () => {
           />
         </Route>
 
-        <Link to="/" style={{ margin: "20px" }}> Home</Link>   
-        <Link to="/activities" style={{ margin: "20px" }}>Activities</Link>
-        <Link to="/routines" style={{ margin: "20px" }}>Routines</Link>
-        <Link to="/my_routines" style={{ margin: "20px" }}>My Routines</Link>
-        <Link to="/register" style={{ margin: "20px" }}>Sign up</Link>
+      <Link to="/" className='link'> Home</Link>
+      <Link to="/activities" className='link'>Activities</Link>
+      <Link to="/routines" className='link'>Routines</Link>
+      <Link to="/my_routines" className= 'link'>My Routines</Link>
+      <Link to="/register" className='link'>Sign up</Link>
 
         {token ?
-        <Link to="/login" style={{ margin: "20px" }}
-        onClick={Logout}>Log out</Link>
-        : <Link to="/login" style={{ margin: "20px "}}>Log in</Link> }
+         <Link to="/login" 
+        onClick={Logout} className='link'>Log out</Link>
+        : <Link to="/login" className='link'>Log in</Link> }
 
         <Route path="/login">
             <Login

@@ -21,10 +21,11 @@ const handleCreateRoutineActivity = async (event, routineId) => {
 }
 
 return (
+    <div id='routine-activity'>
     <form>
-            <label htmlFor='title' id='title'>Activity:</label>
-            <select name="activities" onChange={(event) => {setActivityId(event.target.value)}}>
-              <option>Please Select An Activity</option>
+            <label htmlFor='title' id='activity-title'>Activity:</label>
+            <select id='activity-option' name="activities" onChange={(event) => {setActivityId(event.target.value)}}>
+              <option >Please Select An Activity</option>
               {activities && activities.map(activity => {
                 return (
                 <option value={activity.id} key={activity.id}>{activity.name}</option>
@@ -33,13 +34,13 @@ return (
             </select>
             <br />
             <label htmlFor='title' id='title'>Counts:</label>
-            <input type='number' id='title-input' name='count' placeholder='' value={count} onChange={(event) => setCount(event.target.value)}/>
+            <input id='count-input'type='number'name='count' placeholder='' value={count} onChange={(event) => setCount(event.target.value)}/>
             <br />
             <label htmlFor='title' id='title'>Duration:</label>
-            <input type='number' id='title-input' name='duration' placeholder='' value={duration} onChange={(event) => setDuration(event.target.value)}/>
+            <input id='duration-input'type='number' name='duration' placeholder='' value={duration} onChange={(event) => setDuration(event.target.value)}/>
             <button type='submit' onClick={(event) => handleCreateRoutineActivity(event, routineId)}>Add Activity</button>
           </form>
-   
+          </div>
 )
 
 }

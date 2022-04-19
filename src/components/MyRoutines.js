@@ -1,13 +1,13 @@
 import React, { useEffect} from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import CreateRoutine from "./CreateRoutine";
-import AttachActivityToRoutine from "./AttachActivityToRoutine";
+//import AttachActivityToRoutine from "./AttachActivityToRoutine";
 import { fetchRoutinesByUsername, deleteRoutine } from "../api";
 
 /*Logged in users routines */
 
 const MyRoutines = ({ token, user, myRoutines, 
-    setMyRoutines, activities }) => {
+    setMyRoutines }) => {
 
   const { search } = useLocation();
   const history = useHistory();
@@ -119,8 +119,6 @@ const MyRoutines = ({ token, user, myRoutines,
                   onClick={(event) => manageActivity(event, routine.id)}>Manage Activities</button>
 
                 </div>
-
-
               );
             })} 
             </div>
