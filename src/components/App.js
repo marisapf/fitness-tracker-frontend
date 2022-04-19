@@ -15,10 +15,7 @@ import {
     GetSingleRoutine,
     SingleRoutineView,
     UpdateActivity,
-    //GetSingleActivity,
-    //SingleActivityView,
-    MyActivities
-                } from "./index";
+    MyActivities  } from "./index";
                 
 const App = () => {
 
@@ -30,12 +27,11 @@ const App = () => {
   const [activities, setActivities] = useState([]);
   const [routines, setRoutines] = useState([]);
   const [myRoutines, setMyRoutines] = useState([]);
-  //const [myActivities, setMyActivities] = useState([]);
 
+  /*Sets activities upon loading of App*/
   useEffect(() => {
      const getData = async () => {
        const apiResponse = await fetchAllActivities();
-       //console.log('apiResponse: ', apiResponse);//causing a console.log loop
        setActivities(apiResponse);
      }
      getData();
@@ -44,7 +40,6 @@ const App = () => {
    const Logout = () => {
     setUser(null);
     //setMessage("You have successfully logged out")
-   // Snackbar()
     localStorage.clear();
   }
   
@@ -56,11 +51,7 @@ const App = () => {
         <div>
       
         <Route exact path="/">
-          <Home
-           user={user}
-           userMessage={userMessage}
-           token={token}
-          />
+          <Home user={user} userMessage={userMessage} token={token}/>
         </Route>
 
       <Link to="/" className='link'> Home</Link>
@@ -69,50 +60,32 @@ const App = () => {
       <Link to="/my_routines" className= 'link'>My Routines</Link>
       <Link to="/register" className='link'>Sign up</Link>
 
-        {token ?
-         <Link to="/login" 
-        onClick={Logout} className='link'>Log out</Link>
-        : <Link to="/login" className='link'>Log in</Link> }
+      {token ?
+      <Link to="/login" 
+      onClick={Logout} className='link'>Log out</Link>
+      : <Link to="/login" className='link'>Log in</Link> }
 
-        <Route path="/login">
-            <Login
-            user={user}
-            setUser={setUser}
-            token={token}
-            setToken={setToken}
-            userMessage={userMessage}
-            setUserMessage={setUserMessage}
-            />
-        </Route>
+      <Route path="/login">
+        <Login user={user} setUser={setUser} token={token} setToken={setToken}
+          userMessage={userMessage} setUserMessage={setUserMessage} />
+      </Route>
 
-        <Route path="/register">
-            <Register 
-             user={user}
-             setUser={setUser}
-             token={token}
-             setToken={setToken}
-             userMessage={userMessage}
-             setUserMessage={setUserMessage}/>
+      <Route path="/register">
+        <Register user={user} setUser={setUser} token={token} setToken={setToken}
+          userMessage={userMessage} setUserMessage={setUserMessage}/>
         </Route>
 
         <Route exact path='/my_routines'>
-            <MyRoutines
-            user={user}
-            setUser={setUser}
-            token={token}
-            setToken={setToken}
-            myRoutines={myRoutines}
-            setMyRoutines={setMyRoutines}
-            activities={activities}
-            />
+          <MyRoutines user={user} setUser={setUser} token={token} setToken={setToken}
+            myRoutines={myRoutines} setMyRoutines={setMyRoutines} activities={activities}/>
         </Route>
 
         <Route path='/update/:routineId'>
-          <UpdateRoutine token={token} myRoutines={myRoutines} />
+          <UpdateRoutine token={token} myRoutines={myRoutines}/>
         </Route>  
 
         <Route path='/edit/:activityId'>
-          <UpdateActivity token={token} activities={activities} />
+          <UpdateActivity token={token} activities={activities}/>
         </Route> 
 
         <Route path='/my_routines/update/:routineId'>
@@ -120,20 +93,8 @@ const App = () => {
         </Route>  
 
         <Route exact path="/activities">
-            <Activities
-            token={token}
-            activities={activities}
-            setActivities={setActivities}
-            />
+          <Activities token={token} activities={activities} setActivities={setActivities}/>
         </Route>
-
-        {/*<Route exact path="/activities/:activityId">
-            <GetSingleActivity />
-        </Route> */}
-
-        {/*<Route path="/activities/:activityId">
-            <SingleActivityView />
-        </Route> */}
 
         <Route exact path="/routines">
           <Routines
@@ -160,15 +121,20 @@ const App = () => {
 export default App;
 
 /* 
- <Route exact path="/routines/:routineId">
-            <SingleRoutineView
-              routines={routines}
-            />
-  </Route>
+**Might use later:
+GetSingleActivity,
+SingleActivityView,
 
-  <Route exact path="/routines/:routineId">
-            <GetSingleRoutine />
-  </Route>
+const [myActivities, setMyActivities] = useState([]);
+<Route exact path="/activities/:activityId">
+  <GetSingleActivity />
+</Route> 
+
+<Route path="/activities/:activityId">
+  <SingleActivityView />
+</Route> 
+
+
 
 
 */

@@ -97,8 +97,8 @@ export const loginUser = async (
 
     localStorage.setItem("token", JSON.stringify(result.token));
     localStorage.setItem("user", JSON.stringify(result.user));
+    history.push("/");
     return result;
-    //history.push("/");
   } catch (err) {
     console.error("Trouble logging in.", err);
     setUserMessage("Invalid username or password. Please try again.");

@@ -22,11 +22,11 @@ const Login = ({ token, setToken, setUser, userMessage, setUserMessage }) => {
 
   return ( 
     <div>
-    <h3>This is the login page.</h3>
+    <h2 className='page-message'>This is the login page.</h2>
 
     <hr></hr>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username: </label>
+        <label className='label-name-pass' htmlFor='username'>Username: </label>
         <input
           id="user-name"
           placeholder="enter name here"
@@ -34,7 +34,7 @@ const Login = ({ token, setToken, setUser, userMessage, setUserMessage }) => {
           value={username}
           onChange={e => setUsername(e.target.value)} />
 
-        <label htmlFor='password'>Password: </label>
+        <label className='label-name-pass' htmlFor='password'>Password: </label>
         <input
           id="pass-word"
           placeholder="password"
@@ -45,7 +45,7 @@ const Login = ({ token, setToken, setUser, userMessage, setUserMessage }) => {
         <button className='form-buttons' type='submit' >Submit</button>
 
       </form>
-  
+      <h3>{userMessage}</h3>
       { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
     </div>
   

@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import {  useHistory } from 'react-router-dom';
 import { addNewUser } from '../api';
 
-
 /*Register component */
 
-const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => {
+const Register = ( {token, setToken, setUser, setUserMessage } ) => {
 
   const history = useHistory();
 
@@ -15,21 +14,25 @@ const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    
+    if (token) {
+      setUserMessage('You are already logged in.');
+    } else {
     await addNewUser( username, password, setToken, setUser, setUserMessage, history);
 
     setUsername('');
     setPassword('');
     } 
-   
+  }
   
   return ( 
+  
     <div>
-        <h3>This is the REGISTER page. Sign up here.</h3>
+        
+      <h2 className='page-message'>This is the REGISTER page. Sign up here.</h2>
        
       <hr></hr>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='username'>Username: </label>
+        <label className='label-name-pass' htmlFor='username'>Username: </label>
         <input
           id="user-name"
           placeholder="enter name here"
@@ -37,7 +40,7 @@ const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => 
           value={username}
           onChange={e => setUsername(e.target.value)} />
 
-        <label htmlFor='password'>Password: </label>
+        <label className='label-name-pass' htmlFor='password'>Password: </label>
         <input
           id="pass-word"
           placeholder="password"
@@ -48,14 +51,16 @@ const Register = ( {token, setToken, setUser, setUserMessage, userMessage} ) => 
         <button className='form-buttons' type='submit' >Submit</button>
 
       </form>
-
+       
     </div>
-    )
+    
+    ) 
 };
 
 export default Register;
 
 /*
- { !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
+token, userMessage
+{ !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
  
 */

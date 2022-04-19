@@ -1,10 +1,9 @@
 import React, { useEffect} from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import CreateRoutine from "./CreateRoutine";
-//import AttachActivityToRoutine from "./AttachActivityToRoutine";
 import { fetchRoutinesByUsername, deleteRoutine } from "../api";
 
-/*Logged in users routines */
+/*Logged in user's routines */
 
 const MyRoutines = ({ token, user, myRoutines, 
     setMyRoutines }) => {
@@ -57,10 +56,10 @@ const MyRoutines = ({ token, user, myRoutines,
   );
 
   return (
-    <div id="my-routines-page">
+    <div>
       {token ? (
         <>
-          <h2>{user.username + "'s "} Routines</h2>
+          <h2 className='page-message'>{user.username + "'s "} Routines</h2>
          
           <h5 className="search-word">Search: </h5>
           <input className="search-field" type="text" placeholder="search here"
@@ -81,41 +80,24 @@ const MyRoutines = ({ token, user, myRoutines,
                   <h4><u>Goal: </u> {routine.goal}</h4>
                   <h4><u>Routine Id:</u> {routine.id}</h4>
 
-                 {/*} <div>
-                  <label htmlFor='activity-list'>activity<span className='activity-count'
-                  >({routine.activities.length})</span></label> 
-                  <select name="activity" id='select-activity' value={activity}
-                   onChange={e => {setActivity(e.target.value)}}>
-                  <option value='any'>Any</option> 
-                  {routine.activities.map((activity) => { 
-                      return (
-                          <option key={activity.id}>{activity.name}</option>)
-                      }
-                      )
-                   };
-                  </select>
-                  </div>*/}
-
                   {routine.activities.map((activity) => {
                     return (
-                      <div id="activity-card" key={activity.id}>
-                        <h2>{activity.name}</h2>
-                        <p>Description: {activity.description}</p>
-                        <p>Duration: {activity.duration}</p>
-                        <p>Count: {activity.count}</p>
+                      <div className="activity-card" key={activity.id}>
+                        <h2>Activity name: {activity.name}</h2>
+                        <h3>Description: {activity.description}</h3>
+                        <h3>Duration: {activity.duration}</h3>
+                        <h3>Count: {activity.count}</h3>
                       </div>
                     );
                   })}
-
-                {/* <AttachActivityToRoutine activities={activities} routineId={routine.id} token={token} /> */}
-                
+        
                   <button type="submit"className="button"
                   onClick={(e) => handleEdit(e, routine.id)}>Edit Routine</button>
 
                   <button type="submit"className="button"
                    onClick={(e) => handleDelete(e, routine.id)}>Delete Routine</button>
                
-                  <button type="submit" 
+                  <button type="submit"className="button"
                   onClick={(event) => manageActivity(event, routine.id)}>Manage Activities</button>
 
                 </div>
@@ -123,7 +105,7 @@ const MyRoutines = ({ token, user, myRoutines,
             })} 
             </div>
         </>
-      ) :  <h2>Please log in to see your routines</h2> }
+      ) :  <h2 className='page-message'>Please log in to see your routines</h2> }
     </div>
   );
 
@@ -132,46 +114,28 @@ const MyRoutines = ({ token, user, myRoutines,
 export default MyRoutines;
 
 /*
+ <AttachActivityToRoutine activities={activities} routineId={routine.id} token={token} /> 
 
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 eyJpZCI6ODE0LCJ1c2VybmFtZSI6IlNhbSIsImlhdCI6MTY1MDAzNjgwNywiZXhwIjoxNjUwNjQxNjA3fQ.
 jxDXj6rY3haFGHhQ5gRNzOLsUFrI8GgLC47Q5k25pB8"
 user: {id: 814, username: 'Sam'}
-
-style={{ border: "1px solid black", background: "bisque" }}
-
-<CreateActivity routineId={routine.id} token={token} setActivities={setActivities} />
-
-setLoggedIn(true);
-const [loggedIn, setLoggedIn] = useState(false)
-const { routineId } = useParams();
-const [count, setCount] = useState('');
-const [duration, setDuration] = useState('');
-
-const handleAddActivity = async (event) => {
-    event.preventDefault();
-    await addActivityToRoutine(routineId, count, setCount, duration, setDuration);
-    //getData();
-  };
-
-<button type="button" className="button"
-onClick={() => setRoutineId(routine.id)}>Edit</button>
-
-import { createRoutine, updateRoutine, deleteRoutine, createActivity } from '..api';
    
 
- <form className='activity-container' onSubmit={handleSubmit}>
-   <h5>add an activity</h5>
-     <input className='input-field' type='number'placeholder='duration'value={duration}
-      onChange={e => setDuration(e.target.value)}>
-     </input>
+<div>
+  <label htmlFor='activity-list'>activity<span className='activity-count'
+   >({routine.activities.length})</span></label> 
 
-   <input className='input-field' type='number' placeholder='count'value={count}
-    onChange={e => setCount(e.target.value)} >
-   </input>
-
-    <button id='form-buttons' type='submit'>add activity</button>
-  </form>
-
+     <select name="activity" id='select-activity' value={activity}
+      onChange={e => {setActivity(e.target.value)}}>
+     <option value='any'>Any</option> 
+     {routine.activities.map((activity) => { 
+       return (
+     <option key={activity.id}>{activity.name}</option> )
+        }
+     )
+   };
+    </select>
+ </div>
 
 */

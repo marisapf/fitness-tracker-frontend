@@ -33,7 +33,7 @@ const Routines = ({ routines, setRoutines }) => {
 
   return (
     <div>
-      <h3>This is the Routines page.</h3>
+      <h2 className='page-message'>This is the Routines page.</h2>
 
       <h5 className="search-word">Search: </h5>
       <input className="search-field" type="text" placeholder="search here"
@@ -54,11 +54,11 @@ const Routines = ({ routines, setRoutines }) => {
               <p>Goal: {routine.goal}</p>
               {routine.activities.map((activity) => {
                 return (
-                  <div key={activity.id} id="routine-card">
+                  <div className='activity-card'key={activity.id}>
                     <h2>Activity name: {activity.name}</h2>
-                    <p>Description: {activity.description}</p>
-                    <p>Duration: {activity.duration}</p>
-                    <p>Count: {activity.count}</p>
+                    <h3>Description: {activity.description}</h3>
+                    <h3>Duration: {activity.duration}</h3>
+                    <h3>Count: {activity.count}</h3>
                   </div>
                 );
               })}

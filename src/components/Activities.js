@@ -41,7 +41,7 @@ const sortedActivities = activities.filter(activity => activityMatches(activity,
 
   return ( 
    <div>
-   <h3 >This is the Activities page.</h3>
+   <h2 className='page-message'>This is the Activities page.</h2>
 
     <h5 className='search-word'>Search: </h5>
     <input className='search-field' type='text' placeholder='search here'
@@ -59,7 +59,7 @@ const sortedActivities = activities.filter(activity => activityMatches(activity,
            <h4><u>Activity Id: </u> {activity.id}</h4>
            
            { token ? <button type="submit"className="button"
-              onClick={(e) => handleEdit( e, activity.id)}>Edit Activity</button> : null }
+            onClick={(e) => handleEdit( e, activity.id)}>Edit Activity</button> : null }
           
       </div>
             ) }) }

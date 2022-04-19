@@ -1,230 +1,246 @@
 body {
-    background:lightsteelblue;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .link {
-    font: bold 1.3em 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color:indigo;
-    margin: 25px;
-  }
-
-  #title-title {
-    display:flexbox;
-    border: 3px solid black;
-    height: 260px;
-    margin-bottom: 40px;
-    background-color:cornflowerblue;
-    padding-bottom: 5px;
-  }
-  
-  #title-words {
-    font: italic bolder 3em cursive;
-    color: purple;
-  }
-  
-  #title-sentence {
-    font: italic bold 1.25em Tahoma;
-    color:darkblue;
-  }
-
-  .home-page-words {
-     font: bold 1.5em Tahoma;
-     color: darkblue;
-  }
-
-#routine-activity{
-
-  display:flex;
-  border: 1px solid black;
-  background: lightgrey;
-  width: 400px;
-  padding:10px;
-  margin: 30px;
+  background: lightsteelblue;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#activity-option {
-  height:25px;
+/*Links, APP*/
+.link {
+  font: bold 1.3em "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: indigo;
+  margin: 25px;
+}
+
+/*Title component */
+#title-container {
+  display: flexbox;
+  border: 3px solid black;
+  height: 260px;
+  margin-bottom: 40px;
+  background-color: cornflowerblue;
+  padding-bottom: 5px;
+}
+
+#title-words {
+  font: italic bolder 3em cursive;
+  color: purple;
+}
+
+#title-sentence {
+  font: italic bold 1.25em Tahoma;
+  color: darkblue;
+}
+
+.home-page-words {
+  font: bold 1.5em Tahoma;
+  color: darkblue;
+}
+
+/*Register, Login */
+#user-name, #pass-word {
+  font: bold 1em Tahoma;
+  border-radius: 4px 4px 4px;
+  height: 30px;
   width: 200px;
-}
-#count-input, #duration-input{
-  height: 15px;
-  width: 50px;
-}
-
-.routine-activity-form {
-  display:flex;
+  margin-right: 20px;
   border: 1px solid black;
-  background: lightgrey;
-  height:300px;
-  width: 300px;
-  padding:10px;
-  margin: 30px;
+}
+
+.label-name-pass {
+  font: bold 1em Tahoma;
+  color:darkblue;
+  margin-left:100px;
+}
+
+.form-buttons {
+  height: 30px;
+  border-radius: 5px 5px 5px;
+  box-shadow: 7px 5px 5px slateblue;  
+}
+
+/*Page message for all six pages*/
+.page-message {
+  font: bold 1.75em Tahoma;
+  color: darkblue;
+  margin-top: 40px;
+  margin-left: 200px;
+  margin-bottom: 40px;
+}
+
+/*selectors across multiple files*/
+.search-word {
+  font: bold 1em Tahoma;
+  color:midnightblue;
+  margin-left: 100px;
+  margin-bottom: 1px;
+}
+
+.search-field {
+  height: 30px;
+  width: 200px;
+  border-radius: 4px 4px 4px;
+
+  margin-left:100px;
+  margin-bottom: 40px;
+}
+
+.input-field {
+  height: 25px;
+  width: 160px;
+  margin-bottom: 10px;
+  border-radius: 4px 4px 4px;
+}
+
+.button {
+  height: 20px;
+  width: 130px;
+  border-radius: 5px 5px 5px;
+  box-shadow: 7px 5px 5px slateblue;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.longer-button {
+  height: 20px;
+  width: 160px;
+  border-radius: 5px 5px 5px;
+  box-shadow: 7px 5px 5px slateblue;
+  margin: 5px;
+  margin-bottom: 10px;
 
 }
-  #routine-activity-card{
-    display:flex;
-    height:500;
-    width: 500;
-    border: 1px solid black;
-    background-color:lightgrey;
-    padding: 20px;
-    margin:50px;
 
-  }
-  #container {
-    padding: 10px;
-    font: bold 1.2em Tahoma; 
-    padding: 5px;
-  }
-  
-  button {
-    height: 20px;
-    border-radius: 2px 2px 2px;
-    box-shadow: 7px 5px 5px slateblue;  
-  }
-  
-  h2, h3 {
-    font: bold 1em Tahoma;
-    color: darkblue;
-  }
-  
-  label {
-    font: normal .9em Tahoma;
-  }
-  
-   #user-name,#pass-word {
-    border-radius: 2px 2px 2px;
-    height: 30px;
-    width: 200px;
-    margin-right: 20px;
-    border: 1px solid black;
-  }
+.number-input {
+  height: 15px;
+  width: 65px;
+  border-radius: 4px 4px 4px;
+}
+
+h2 {
+  font: bold 1em Tahoma;
+  color: darkblue;
+}
+
+h3 {
+  font: .9em Tahoma;
+  color: darkblue;
+}
+
+label {
+  font: normal 0.9em Tahoma;
+}
+
+/****Routines, MyRoutines*/
 
 .routine-section, .activity-section {
-    display: flex;
-    flex-flow:row wrap;
-    margin:50px;
-  }
-   
-.routine-container {
-    
-    box-sizing: border-box;
-    font: .75em Tahoma; 
-    height:420px;
-    width: 300px;
-    border: 1px solid black;
-    background-color: lightpink;
-    margin:50px;
-  }
-
-  .activity-container {
-    
-    box-sizing: border-box;
-    font: .75em Tahoma; 
-    height:200px;
-    width: 150px;
-    border: 1px solid black;
-    background-color:thistle;
-    margin:50px;
-  }
-
- .activity-form {
-    box-sizing: border-box;
-    height:200;
-    width: 150;
-    border: 1px solid black;
-    background-color:lightgrey;
-    margin:50px;
-  }
-
-.create-activity-container, .create-routine-container {
-
-    box-sizing: border-box;
-    font: 1em Tahoma; 
-    height:300px;
-    width: 180px;
-    border: 1px solid black;
-    background-color: lightpink;
-    margin:50px
-
+  display: flex;
+  flex-flow: row wrap;
+  margin: 50px;
 }
 
-  .input-field {
-    height: 25px;
-    width: 160px;
-    margin-bottom: 10px;
-  }
-  
-  .search-word {
-    margin-bottom: 1px;
-  }
-  .search-field {
-    height: 25px;
-    width: 200px;
-    margin-bottom: 40px;
-  }
+.routine-container {
+  display:flex;
+  flex-flow: column wrap;
+  flex-basis: auto;
+  font: 0.75em Tahoma;
+  border: 1px solid black;
+  background-color: lightpink;
+  padding:10px;
+  margin: 50px;
+}
 
-  button {
-    height: 20px;
-    border-radius: 5px 5px 5px;
-    box-shadow: 7px 5px 5px slateblue; 
-    margin:5px; 
-    margin-bottom: 10px;
-  }
-  
-  
+/*displayed on routine on myroutines page */
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: lightsteelblue;
+  height: 150px;
+  width: 185px; 
+  margin:10px;
+}
+
+.create-activity-container, .create-routine-container {
+  box-sizing: border-box;
+  font: 1em Tahoma;
+  height: 250px;
+  width: 200px;
+  border: 1px solid black;
+  background-color: lightpink;
+  margin: 50px;
+  padding:10px;
+}
+
+/*AttachActivityToRoutine ** MyActivities */
+#routine-activity {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background: lightgrey;
+  height:125px;
+  width: 300px;
+  padding: 10px;
+  margin: 60px;
+}
+
+#activity-select {
+  height: 25px;
+  width: 200px;
+}
+
+.activity-title {
+  padding: 10px;
+}
+
+/*activities*/
+.activity-container {
+  box-sizing: border-box;
+  font: 0.75em Tahoma;
+  height: 200px;
+  width: 150px;
+  border: 1px solid black;
+  background-color: thistle;
+  margin: 50px;
+}
+
+.activity-form {
+  box-sizing: border-box;
+  height: 200;
+  width: 150;
+  border: 1px solid black;
+  background-color: lightgrey;
+  margin: 50px;
+}
+
+ #edit-activity {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background: lightgrey;
+  height:200px;
+  width: 250px;
+  padding: 10px;
+  margin: 60px;
+}
+
+/*MyActivities */
+#routine-activity-container {
+  margin-left:60px;
+  margin-bottom: 5px;
+}
+
+ #edit-routine-activity {
+  display: flex;
+  flex-direction: column;
+  width:250px;
+  padding:10px;
+  border: 1px solid black;
+  background-color: lightgreen;
+  margin-left:60px;
+  margin-bottom: 25px;
+}
  
-  
 
-  /*
-/* a:hover {
 
-    color:darkgreen;
-    background-color:darksalmon;
-  }   
-
-  #message-container {
-    box-sizing: border-box;
-    height:150px;
-    width: 350px;
-    border: 1px solid black;
-    background-color: lightpink;
-    margin-left:210px ;
-    margin-bottom: 10px;
-  }
-
-  .form-buttons {
-    height: 30px;
-    border-radius: 5px 5px 5px;
-    box-shadow: 7px 5px 5px slateblue;  
-  }
-
-  #posts-page-title{
-    margin-bottom: 30px;
-  }
-  
-   #all-posts, #messages, #profile-posts {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    flex-grow: 1;
-  }
-  
-  #post-things {
-    font: normal .75em Tahoma;
-    margin-left: 210px;
-    height: 280px;
-    min-width: 200px;
-    max-width: 260px;
-    flex: 1 0 150px;
-    margin-bottom: 20px;
-  }
-
-  #single-activity {
-    box-sizing: border-box;
-    height:320px;
-    width: 240px;
-    margin:50px;
-  }
-  */
+/*
+*/
