@@ -60,7 +60,4 @@ const Register = ( {token, setToken, setUser, setUserMessage } ) => {
 export default Register;
 
 /*
-token, userMessage
-{ !token || !username?  <h2>{userMessage}</h2> : setUserMessage('') }
- 
-*/
+ */

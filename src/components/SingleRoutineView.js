@@ -20,5 +20,4 @@ const SingleRoutineView = ({ routines }) => {
 export default SingleRoutineView;
 
 /*
- 
-*/
+ */

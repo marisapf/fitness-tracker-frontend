@@ -54,22 +54,4 @@ export default AttachActivityToRoutine;
 
 /*
 
- <form className='activity-form' onSubmit={handleCreateRoutineActivity}>
-        <h5>Create a routine activity.</h5>
-        <input className='input-field' style={{height:'20px', width:'100px'}}
-            type='number'
-            placeholder='count'
-            value={count}
-            onChange={e => setCount(e.target.value)}>
-        </input>
-
-        <input className='input-field' style={{height:'20px', width:'100px'}}
-            type='number'
-            placeholder='duration'
-            value={duration}
-            onChange={e => setDuration(e.target.value)} >
-        </input>
-
-        <button className='button' type='submit'>Create Routine Activity</button>
-    </form>
 */

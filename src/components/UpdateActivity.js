@@ -47,9 +47,7 @@ const UpdateActivity = ({ token, activities }) => {
 export default UpdateActivity;
 
 /*
-const [name, setName] = useState('');
-const [description, setDescription] = useState('');
-
+Need to figure this out, like on MyRoutines
 *To display the activities name and description before user edits** 
 
  return ( 
@@ -79,6 +77,4 @@ const [description, setDescription] = useState('');
     </> })} 
     </div> 
     )
-
-
 */

@@ -49,7 +49,4 @@ const CreateActivity = ({ token, setActivities }) => {
 export default CreateActivity;
 
 /*
-if(routineId){
-    await addActivityToRoutine(routineId, count, setCount, duration, setDuration)
-}
 */

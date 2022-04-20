@@ -1,8 +1,7 @@
 import React from 'react';
 
-/*Renders a single routine  */
-
-//this component is used in SingleRoutineView
+/*Renders a single routine  
+this component is used in SingleRoutineView*/
 
 const GetSingleRoutine = ({ routine }) => {
 

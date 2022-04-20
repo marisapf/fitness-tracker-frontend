@@ -73,20 +73,4 @@ const Routines = ({ routines, setRoutines }) => {
 export default Routines;
 
 /* 
-import { addUser } from '../api';
-import { Link } from "react-router-dom";
-import { GetSingleRoutine } from ".";
-import CreateRoutine from "./CreateRoutine";
-
-return ( 
-    <h3>This is the Routines page.</h3>
-)
-
- {token ? <CreateRoutine token={token} /> : null}
-
-{ sortedRoutines.map(routine =>
-  <GetSingleRoutine key={routine.id} routine={routine}>
-    <Link to={`/routines/${routine.id}`}>See details</Link>
-</GetSingleRoutine>
-  )}
 */

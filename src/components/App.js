@@ -118,21 +118,3 @@ const App = () => {
 
 export default App;
 
-/* 
-**Might use later:
-GetSingleActivity,
-SingleActivityView,
-
-const [myActivities, setMyActivities] = useState([]);
-<Route exact path="/activities/:activityId">
-  <GetSingleActivity />
-</Route> 
-
-<Route path="/activities/:activityId">
-  <SingleActivityView />
-</Route> 
-
-
-
-
-*/

@@ -268,7 +268,7 @@ export const createNewActivity = async (
 
     setName(result.name);
     setDescription(result.description);
-    
+
   } catch (err) {
     console.error("Trouble creating activity.", err);
   }
@@ -398,7 +398,6 @@ export const deleteRoutineActivity = async (token, routineActivityId) => {
 };
 
 /*
-
 console.log("result,", result);
 console.log("result.token,", result.token);
 
@@ -414,9 +413,6 @@ console.log("routines, result", result);
 console.log("fetchRoutinesByUsername, ", username);
 console.log("fetchRoutinesByUsername, result, ", result);
   
-      
-    
-
  /* if(result & result.name) {
         const newActivities = activities.map(activity => {
           if(activity.id === activityId){
@@ -426,8 +422,8 @@ console.log("fetchRoutinesByUsername, result, ", result);
           }
         });
         setActivities(newActivities);
-      // setName('');
-       // setDescription('');
+      //setName('');
+      //setDescription('');
         
       }
-   */
+  */

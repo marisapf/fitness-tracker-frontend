@@ -54,5 +54,10 @@ const Login = ({ token, setToken, setUser, userMessage, setUserMessage }) => {
 
 export default Login;
 
+
 /*
+ "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJpZCI6ODE0LCJ1c2VybmFtZSI6IlNhbSIsImlhdCI6MTY1MDAzNjgwNywiZXhwIjoxNjUwNjQxNjA3fQ.
+jxDXj6rY3haFGHhQ5gRNzOLsUFrI8GgLC47Q5k25pB8"
+user: {id: 814, username: 'Sam'}
 */

@@ -63,31 +63,4 @@ const sortedActivities = activities.filter(activity => activityMatches(activity,
 export default Activities;
 
 /*
-/*
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const apiResponse = await fetchAllActivities();
-  //     //console.log('apiResponse: ', apiResponse);//causing a console.log loop
-  //     setActivities(apiResponse);
-  //   }
-  //   getData();
-  // }, [setActivities]);
-why is this like this?? 
-const sortedActivities = activities.filter(activity => activityMatches(activity, searchTerm));
-  const handleEdit = async (event, activityId) => {
-  event.preventDefault();
-  history.push(`/edit/${activityId}`);
-}
- <CreateActivity token={token} setActivities={setActivities} />
-
- style={{ border: "1px solid black", background: "bisque" }}
-
- { token ? <CreateActivity token={token}/> : null }
-
- {sortedActivities.map(activity =>
-    <GetSingleActivity key={activity.id} activity={activity}>
-      <Link to={`/activities/${activity.id}`}>See details</Link>
-    </GetSingleActivity>
-    )}
 */

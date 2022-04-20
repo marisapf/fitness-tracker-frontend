@@ -113,29 +113,4 @@ const MyRoutines = ({ token, user, myRoutines,
 
 export default MyRoutines;
 
-/*
- <AttachActivityToRoutine activities={activities} routineId={routine.id} token={token} /> 
 
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
-eyJpZCI6ODE0LCJ1c2VybmFtZSI6IlNhbSIsImlhdCI6MTY1MDAzNjgwNywiZXhwIjoxNjUwNjQxNjA3fQ.
-jxDXj6rY3haFGHhQ5gRNzOLsUFrI8GgLC47Q5k25pB8"
-user: {id: 814, username: 'Sam'}
-   
-
-<div>
-  <label htmlFor='activity-list'>activity<span className='activity-count'
-   >({routine.activities.length})</span></label> 
-
-     <select name="activity" id='select-activity' value={activity}
-      onChange={e => {setActivity(e.target.value)}}>
-     <option value='any'>Any</option> 
-     {routine.activities.map((activity) => { 
-       return (
-     <option key={activity.id}>{activity.name}</option> )
-        }
-     )
-   };
-    </select>
- </div>
-
-*/

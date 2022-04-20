@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
-    "build": "react-scripts build"
-  },
+    "build": "CI='' react-scripts build"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marisapf/fitness-tracker-frontend.git"

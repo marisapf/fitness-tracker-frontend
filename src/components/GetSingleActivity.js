@@ -1,8 +1,7 @@
 import React from 'react';
 
-/*Renders a single activity */
-
-//this component is used in SingleActivityView
+/*Renders a single activity
+this component is used in SingleActivityView */
 
 const GetSingleActivity = ({ activity }) => {
 

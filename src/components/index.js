@@ -18,5 +18,3 @@ export { default as AttachActivityToRoutine} from './AttachActivityToRoutine'
 export { default as MyActivities } from './MyActivities';
 export { default as APIURL } from './APIURL';
 
-//export {default as UpdateRoutineActivity} from './UpdateRoutineActivity';
-//export { default as DeleteRoutineActivity } from './DeleteRoutineActivity;
