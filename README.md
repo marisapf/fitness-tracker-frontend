@@ -1,25 +1,37 @@
 # fitness-tracker-frontend
 This is still not finished. 
-It seems like there is an endless amount of editing. 
-The CSS is bad and it is arduous to go through and try to fix and adjust things and it doesn't change in browser. 
-Still needs a lot of editing, I have files I didn't use and comments and console.logs I haven't taken out. 
-I am very disappointed in this project, I just cannot work fast enough and I did not have enough time. 
-It is too big and awkward and too difficult to keep track of activities, routines, edit pages, element tags for styling. 
-I was trying to get the Edit Activity to work. 
-I tried to do exactly what Nick showed me to do in My Routines to display the current information that the user wants to edit. 
-Of course it didn't work, even though it is the exact same process. 
+It seems like there is an endless amount of editing.
+It is not cleaned up and it is not ready to be turned in. 
+I would like to improve messages depending on what user does. 
 
-Most of this was working, but I am never sure.  When I click around, sometimes I get the error in console 'process not defined' and the 
-screen locks up. 
-I did not have enough time on this, it was too confusing. 
-My component file got out of hand. 
-This was extremely disappointing, exhausting, complicated and not enough time.  
-I spent too much time not being able to get code to work.  When I think I was following the logic of how it should be working.
-There are similarities. Like adding something/creating something. I thought the same process would work on a different step, but 
+When user clicks to manage activities/my activities, this page needs more work. 
+
+The CSS is bad and it is arduous to go through and try to fix and adjust things and it doesn't change in browser. 
+Still needs a lot of editing.
+I have files I didn't use and comments and console.logs I haven't taken out. 
+I need more time to keep working on it. 
+
+It became too big,  awkward and too difficult to keep track of activities, routines, edit pages, element tags.
+I was trying to get the Edit Activity to work. 
+I tried to do what Nick showed me to do in My Routines to display the current information that the user wants to edit.
+
+Much of this was working. Sometimes when I change something, something else stops working. 
+
+When I click around, sometimes I get the error in console 'process not defined' and the 
+screen locks up. I thought process.env was in the back end.
+
+My component file is too big and unwieldy. I have components that I did not need (like single views/get single views). 
+I might still try to use them, so I have not deleted them. 
+
+I spent too much time not being able to get code to work.  
+When I think I was following the logic of how it should be working, 
+There are similarities in the processes like creating something, deleting, updating.. I thought the same process would work on a different step, but 
 it always took too long to get it to work. 
+
 I did not know I would need so many API calls.  I modeled this after Stranger Things and Art Collector.
 However, I should have been able to get the one API function to work, but didn't have time to refactor the APP.
-Also, whenver I refactor something, it will make something else not work, so it is too exhausting to try to do that, expecially when running out of time.
-The ternary on the LOG OUT/LOG IN does not always display correctly, WHY? It should be working. 
-This was more complicated than Strangers Things and needed more time to work on it. 
-I have a thousand more complaints and critiques of this but don't have time. 
+
+WhenI refactor something, it will make something else not work. I still need to try this on a few components first. 
+
+
+
