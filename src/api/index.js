@@ -268,6 +268,7 @@ export const createNewActivity = async (
 
     setName(result.name);
     setDescription(result.description);
+    
   } catch (err) {
     console.error("Trouble creating activity.", err);
   }

@@ -38,8 +38,9 @@ const App = () => {
    }, [setActivities]);
     
    const Logout = () => {
+    setToken(null);
     setUser(null);
-    //setMessage("You have successfully logged out")
+    setUserMessage("You have successfully logged out")
     localStorage.clear();
   }
   
@@ -50,9 +51,9 @@ const App = () => {
       <BrowserRouter>
         <div>
       
-        <Route exact path="/">
-          <Home user={user} userMessage={userMessage} token={token}/>
-        </Route>
+      <Route exact path="/">
+        <Home user={user} userMessage={userMessage} token={token}/>
+      </Route>
 
       <Link to="/" className='link'> Home</Link>
       <Link to="/activities" className='link'>Activities</Link>
@@ -97,10 +98,7 @@ const App = () => {
         </Route>
 
         <Route exact path="/routines">
-          <Routines
-           routines={routines}
-           setRoutines={setRoutines}
-          />
+          <Routines routines={routines} setRoutines={setRoutines}/>
         </Route>
 
         <Route exact path="/routines/:routineId">

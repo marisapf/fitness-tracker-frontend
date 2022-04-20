@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 import { addActivityToRoutine } from '../api';
 
-const AttachActivityToRoutine = ({ activities }) => {
+const AttachActivityToRoutine = ({ activities, myRoutines }) => {
 
    const { routineId } = useParams();
-   const[activityId,setActivityId] = useState('');
-   const history = useHistory();
+   const [activeEdit] = myRoutines.filter(routine => routine.id === Number(routineId));
+   const [activityId, setActivityId] = useState('');
    const [count, setCount] = useState('')
-   const [ duration, setDuration] = useState('');
+   const [duration, setDuration] = useState('');
+   const history = useHistory();
 
 const handleCreateRoutineActivity = async (event, routineId) => {
     event.preventDefault();
@@ -17,8 +18,11 @@ const handleCreateRoutineActivity = async (event, routineId) => {
         
     console.log('addActivityToRoutine,routineId',routineId );
 
-    history.push('/my_routines')
+    history.push('/my_routines');
+
 }
+
+const openActivities = activities.filter(({name: val1}) => !activeEdit.activities.some(({name: val2}) => val2 === val1));
 
 return (
     <div id='routine-activity'>
@@ -26,7 +30,7 @@ return (
         <label htmlFor='title' className='activity-title'>Activity:</label>
           <select id='activity-select' name="activities" onChange={(event) => {setActivityId(event.target.value)}}>
           <option >Please Select An Activity</option>
-          {activities && activities.map(activity => {
+          {openActivities && openActivities.map(activity => {
            return (
           <option value={activity.id} key={activity.id}>{activity.name}</option>
             )

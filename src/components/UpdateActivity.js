@@ -2,16 +2,16 @@ import React, { useState } from 'react'
 import { updateActivity } from '../api';
 import { useParams, useHistory } from 'react-router-dom';
 
-const UpdateActivity = ({token, activities}) => {
+const UpdateActivity = ({ token, activities }) => {
+
     const { activityId } = useParams();
-
+    const [activeEdit] = activities.filter(activity => activity.id === Number(activityId));
+    const [name, setName] = useState(activeEdit.name);
+    const [description, setDescription] = useState(activeEdit.description);
+   
+   const history = useHistory();
   
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const history = useHistory();
-  
-
-    const handleEdit = async (token, event) => {
+    const handleEdit = async (event) => {
         event.preventDefault();
         await updateActivity(activityId,token,name,description);
         history.push('/activities');
@@ -46,10 +46,11 @@ const UpdateActivity = ({token, activities}) => {
 
 export default UpdateActivity;
 
-/*Still trying to get this to work. It should work they way it does in MyRoutines
-const [activeEdit] = activities.filter(activity => activity.id === Number(activityId));
-const [name, setName] = useState(activeEdit.name);
-const [description, setDescription] = useState(activeEdit.description);
+/*
+const [name, setName] = useState('');
+const [description, setDescription] = useState('');
+
+*To display the activities name and description before user edits** 
 
  return ( 
      <div>
