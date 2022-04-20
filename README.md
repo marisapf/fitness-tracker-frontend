@@ -33,5 +33,6 @@ However, I should have been able to get the one API function to work, but didn't
 
 WhenI refactor something, it will make something else not work. I still need to try this on a few components first. 
 
+Console.logs are still in src/index/api so I can still work on those functions.  Would like to try to write the callAPI function. 
 
 
